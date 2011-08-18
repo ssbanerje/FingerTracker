@@ -1,3 +1,12 @@
 A program to track the positions of fingers in pictures obtained from a Microsoft Kinect Sensor.
 
 This program has been tested on Mac OSX 10.7 and OF007
+
+Addons required ----
+ofxThread
+ofxVectorMath
+ofxKinect
+ofxOpenCv
+ofxMSAInteractiveObject
+ofxXmlSettings
+ofxSimpleGuiToo

@@ -5,6 +5,7 @@
 void FingerTracker::setup() {
     //Setup OF
     ofSetFrameRate(60);
+    ofSetWindowTitle("FingerTracker");
     
 	//Setup Kinect
 	kinect.init();
@@ -18,8 +19,8 @@ void FingerTracker::setup() {
     threshImage.allocate(kinect.width, kinect.height);
     
     //Setup detection
-    nearThreshold = 5;
-    farThreshold = 30;
+    nearThreshold = 255;
+    farThreshold = 200;
     mirror = false;
     
     //Setup GUI
@@ -29,8 +30,8 @@ void FingerTracker::setup() {
     gui.addSlider("Tilt Angle", angle, -30, 30);
     gui.addToggle("Mirror", mirror);
     gui.addTitle("Depth Threshold");
-    gui.addSlider("Near Distance", nearThreshold, 5, 20);
-    gui.addSlider("Far Distance", farThreshold, 20, 60);
+    gui.addSlider("Near Distance", nearThreshold, 0, 255);
+    gui.addSlider("Far Distance", farThreshold, 255, 0);
     gui.setDefaultKeys(true);
     gui.loadFromXML();
     gui.show();
@@ -38,7 +39,7 @@ void FingerTracker::setup() {
 
 //--------------------------------------------------------------
 void FingerTracker::update() {
-	ofBackground(100, 100, 100);
+	ofBackground(55, 50, 50);
     kinect.setCameraTiltAngle(angle);
 
 	kinect.update();
@@ -61,13 +62,12 @@ void FingerTracker::update() {
                 pix[i] = 0;
             }
         }
+        
+        //update the cv image
+        grayImage.flagImageChanged();
+        threshImage.flagImageChanged();
+        contourFinder.findContours(threshImage, (kinect.width*kinect.height)/30, (kinect.width*kinect.height)/2, 20, false);
     }
-    
-    //update the cv image
-	grayImage.flagImageChanged();
-    threshImage.flagImageChanged();
-	contourFinder.findContours(grayImage, 10, (kinect.width*kinect.height)/2, 20, false);
-
 }
 
 //--------------------------------------------------------------
@@ -75,10 +75,10 @@ void FingerTracker::draw() {
     gui.draw();
 	ofSetColor(255, 255, 255);
     
-    kinect.drawDepth(400, 10, 400, 300);
+    kinect.drawDepth(400, 100, 400, 300);
 
-    grayImage.draw(400, 320, 400, 300);
-    contourFinder.draw(400, 320, 400, 300);
+    threshImage.draw(400, 420, 400, 300);
+    contourFinder.draw(400, 420, 400, 300);
 
 	ofSetColor(255, 255, 255);
 }

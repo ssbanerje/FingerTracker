@@ -62,7 +62,7 @@ void FingerTracker::update() {
 }
 
 //--------------------------------------------------------------
-void unproject(unsigned short *depth, float *x, float *y, float *z) {
+void FingerTracker::unproject(unsigned short *depth, float *x, float *y, float *z) {
     int u,v;
 	const float f = 500.0f;
 	const float u0 = 320.0f;
@@ -88,7 +88,7 @@ void unproject(unsigned short *depth, float *x, float *y, float *z) {
 }
 
 //--------------------------------------------------------------
-vector<cv::Point2i> detectFingers(cv::Mat1f z, float zMin, float zMax) {
+vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float zMax) {
     vector<cv::Point2i> fingers;
     
     cv::Mat handMask = z < zMax & z > zMin;

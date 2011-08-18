@@ -773,6 +773,7 @@
 				);
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -806,6 +807,7 @@
 				);
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};

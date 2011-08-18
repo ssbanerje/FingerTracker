@@ -1,7 +1,8 @@
 #pragma once
 
+#define DEBUG true
+
 #include "ofMain.h"
-#include "ofxPoint2f.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
 #include "ofxSimpleGuiToo.h"
@@ -22,18 +23,31 @@ public:
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
     
-    //vector<ofxPoint2f> detectFingers(cv::Mat1f z, float zMin=0.0f, float zMax=0.75f, cv::Mat1f& debugFrame=cv::Mat1f());
+    void unproject(unsigned short *depth, float *x, float *y, float *z);
+    
+    vector<cv::Point2i> detectFingers(cv::Mat1f z, float zMin=0.0f, float zMax=0.75f);
 
 private:
-	ofxKinect kinect;
+	ofxKinect                       kinect;
+    ofxCvGrayscaleImage             grayImage;
+    ofxCvColorImage                 colorImage;
+    
+    std::vector<cv::Point2i>        fingerTips;
 
-	ofxCvGrayscaleImage 	grayImage;
-    ofxCvGrayscaleImage     threshImage;
-
-	ofxCvContourFinder 	contourFinder;
-
-	int 				nearThreshold;
-	int					farThreshold;
-	int					angle;
-    bool                mirror;
+	int                             nearThreshold;
+	int                             farThreshold;
+	int                             angle;
+    bool                            mirror;
+    
+    cv::Mat                         *depthFrameRaw;
+    cv::Mat                         *x;
+    cv::Mat                         *y;
+    cv::Mat                         *z;
+    cv::Mat1f                       *debugFrame;
+    
+    float                           rMin;
+    float                           zMin;
+    float                           zMax;
+    int                             key;
+    unsigned short                  *depthFrameRawData;
 };

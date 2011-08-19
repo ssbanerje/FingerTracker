@@ -21,7 +21,6 @@ void FingerTracker::setup() {
     x = new cv::Mat(480, 640, CV_32FC1);
     y = new cv::Mat(480, 640, CV_32FC1);
     z = new cv::Mat(480, 640, CV_32FC1);
-    debugFrame = new cv::Mat1f(480, 640);
     rMin = 25;
     zMin = 0.0f;
     zMax = 0.75f;
@@ -41,16 +40,15 @@ void FingerTracker::setup() {
 
 //--------------------------------------------------------------
 void FingerTracker::update() {
-	ofBackground(55, 50, 50);
+	ofBackground(50, 50, 52);
     kinect.setCameraTiltAngle(angle);
 	kinect.update();
     
 	if(kinect.isFrameNew())	{
-        depthFrameRawData = kinect.getRawDepthPixels();
-        grayImage.setFromPixels(kinect.getDepthPixels(), kinect.width, kinect.height);
         colorImage.setFromPixels(kinect.getPixels(), kinect.width, kinect.height);
+        grayImage.setFromPixels(kinect.getDepthPixels(), kinect.width, kinect.height);
+        depthFrameRawData = kinect.getRawDepthPixels();
         unproject(depthFrameRawData, (float*)x->data, (float*)y->data, (float*)z->data);
-        //debugFrame = z * 0.1;
         fingerTips = detectFingers(*z, zMin, zMax);
     }
 }
@@ -157,7 +155,6 @@ void FingerTracker::exit() {
     delete x;
     delete y;
     delete z;
-    delete debugFrame;
 }
 
 //--------------------------------------------------------------

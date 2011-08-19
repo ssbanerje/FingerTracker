@@ -40,7 +40,6 @@ private:
     cv::Mat                         *x;
     cv::Mat                         *y;
     cv::Mat                         *z;
-    cv::Mat1f                       *debugFrame;
     
     float                           rMin;
     float                           zMin;

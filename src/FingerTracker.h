@@ -33,11 +33,8 @@ private:
     ofxCvColorImage                 colorImage;
     
     std::vector<cv::Point2i>        fingerTips;
-
-	int                             nearThreshold;
-	int                             farThreshold;
+    
 	int                             angle;
-    bool                            mirror;
     
     cv::Mat                         *depthFrameRaw;
     cv::Mat                         *x;

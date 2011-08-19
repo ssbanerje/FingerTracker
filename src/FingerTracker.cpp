@@ -26,20 +26,14 @@ void FingerTracker::setup() {
     zMin = 0.0f;
     zMax = 0.75f;
     
-    //Setup detection
-    nearThreshold = 255;
-    farThreshold = 200;
-    mirror = false;
-    
     //Setup GUI
     gui.setup();
     gui.config->gridSize.x = 200;
     gui.addTitle("Kinect Settings");
     gui.addSlider("Tilt Angle", angle, -30, 30);
-    gui.addToggle("Mirror", mirror);
     gui.addTitle("Depth Threshold");
-    gui.addSlider("Near Distance", nearThreshold, 0, 255);
-    gui.addSlider("Far Distance", farThreshold, 255, 0);
+    gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
+    gui.addSlider("Far Distance", zMax, 1.0f, 0.0f);
     gui.setDefaultKeys(true);
     gui.loadFromXML();
     gui.show();
@@ -148,6 +142,10 @@ void FingerTracker::draw() {
 	ofSetColor(255, 255, 255);
     colorImage.draw(550, 100, 160, 120);
     grayImage.draw(250, 250, kinect.width, kinect.height);
+    ofSetColor(255, 0, 0);
+    for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
+        ofCircle(it->x+250, it->y+250, 10);
+    }
 	ofSetColor(255, 255, 255);
 }
 
@@ -165,27 +163,6 @@ void FingerTracker::exit() {
 //--------------------------------------------------------------
 void FingerTracker::keyPressed (int key) {
 	switch (key) {
-		case '>':
-		case '.':
-			farThreshold ++;
-			if (farThreshold > 255) farThreshold = 255;
-			break;
-		case '<':		
-		case ',':		
-			farThreshold --;
-			if (farThreshold < 0) farThreshold = 0;
-			break;
-			
-		case '+':
-		case '=':
-			nearThreshold ++;
-			if (nearThreshold > 255) nearThreshold = 255;
-			break;
-		case '-':		
-			nearThreshold --;
-			if (nearThreshold < 0) nearThreshold = 0;
-			break;
-
 		case OF_KEY_UP:
 			angle++;
 			if(angle>30) angle=30;

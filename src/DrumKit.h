@@ -10,7 +10,7 @@ public:
     DrumKit();
     ~DrumKit() {}
     
-    void Draw();
+    void draw();
 private:
     ofSoundPlayer drumSounds[10];
 };

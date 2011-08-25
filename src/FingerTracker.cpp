@@ -66,7 +66,7 @@ void FingerTracker::unproject(unsigned short *depth, float *x, float *y, float *
 	float zCurrent;
     
 	// TODO calibration
-    
+    #pragma omp parallel for
 	for (int i=0; i<640*480; i++) {
 		u = i % 640;
 		v = i / 640;
@@ -107,6 +107,7 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
                 cv::convexHull(temp, hull);
                 
                 int upper=640, lower=0;
+                #pragma omp parallel for
                 for(int j=0;j<hull.size();j++) {
                     int idx = hull[j];
 					if (approxCurve[idx].y < upper) upper = approxCurve[idx].y;
@@ -115,6 +116,7 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
                 
                 float cutoff = lower - (lower-upper)*0.1f;
             
+                #pragma omp parallel for
                 for (int j=0; j<hull.size(); j++) {
 					int idx = hull[j];
 					int pdx = idx == 0 ? approxCurve.size() - 1 : idx - 1;
@@ -151,6 +153,7 @@ void FingerTracker::draw() {
         colorImage.draw(WIDTH-160, HEIGHT-120, 160, 120);
     if(showMenu)
         gui.draw();
+    drumKit.draw();
 }
 
 //--------------------------------------------------------------

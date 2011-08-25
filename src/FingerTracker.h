@@ -5,6 +5,7 @@
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
 #include "ofxSimpleGuiToo.h"
+#include "DrumKit.h"
 #include <vector>
 
 using namespace std;
@@ -48,4 +49,6 @@ private:
     
     bool                            showMenu;
     bool                            showColorImage;
+    
+    DrumKit                         drumKit;
 };

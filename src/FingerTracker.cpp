@@ -6,6 +6,7 @@ void FingerTracker::setup() {
     //Setup OF
     ofSetFrameRate(60);
     ofSetWindowTitle("FingerTracker");
+    ofSetDataPathRoot("../Resources/");
     
 	//Setup Kinect
 	kinect.init();

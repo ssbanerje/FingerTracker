@@ -50,6 +50,7 @@
 		F7153E951406823F00DF63BD /* kick_08.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8A140681F500DF63BD /* kick_08.wav */; };
 		F7153E961406823F00DF63BD /* kick_09.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8B140681F500DF63BD /* kick_09.wav */; };
 		F7153E971406823F00DF63BD /* kick_10.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8C140681F500DF63BD /* kick_10.wav */; };
+		F7153E9C140684FA00DF63BD /* OpenFrameworks.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */; };
 		F75FEC7013FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */; };
 		F75FEC7113FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4E13FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp */; };
 		F75FEC7213FCC7CA0032B0A9 /* ofxSimpleGuiComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC5013FCC7CA0032B0A9 /* ofxSimpleGuiComboBox.cpp */; };
@@ -106,6 +107,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				F7153E9C140684FA00DF63BD /* OpenFrameworks.icns in CopyFiles */,
 				F7153E8E1406823F00DF63BD /* kick_01.wav in CopyFiles */,
 				F7153E8F1406823F00DF63BD /* kick_02.wav in CopyFiles */,
 				F7153E901406823F00DF63BD /* kick_03.wav in CopyFiles */,

@@ -49,7 +49,7 @@
 		F7153E941406823F00DF63BD /* kick_07.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E89140681F500DF63BD /* kick_07.wav */; };
 		F7153E951406823F00DF63BD /* kick_08.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8A140681F500DF63BD /* kick_08.wav */; };
 		F7153E961406823F00DF63BD /* kick_09.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8B140681F500DF63BD /* kick_09.wav */; };
-		F7153E971406823F00DF63BD /* kick_10.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8C140681F500DF63BD /* kick_10.wav */; };
+		F7153E971406823F00DF63BD /* kick_010.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8C140681F500DF63BD /* kick_010.wav */; };
 		F7153E9C140684FA00DF63BD /* OpenFrameworks.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */; };
 		F75FEC7013FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */; };
 		F75FEC7113FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4E13FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp */; };
@@ -117,7 +117,7 @@
 				F7153E941406823F00DF63BD /* kick_07.wav in CopyFiles */,
 				F7153E951406823F00DF63BD /* kick_08.wav in CopyFiles */,
 				F7153E961406823F00DF63BD /* kick_09.wav in CopyFiles */,
-				F7153E971406823F00DF63BD /* kick_10.wav in CopyFiles */,
+				F7153E971406823F00DF63BD /* kick_010.wav in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +202,7 @@
 		F7153E89140681F500DF63BD /* kick_07.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_07.wav; sourceTree = "<group>"; };
 		F7153E8A140681F500DF63BD /* kick_08.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_08.wav; sourceTree = "<group>"; };
 		F7153E8B140681F500DF63BD /* kick_09.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_09.wav; sourceTree = "<group>"; };
-		F7153E8C140681F500DF63BD /* kick_10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_10.wav; sourceTree = "<group>"; };
+		F7153E8C140681F500DF63BD /* kick_010.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_010.wav; sourceTree = "<group>"; };
 		F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = OpenFrameworks.icns; sourceTree = "<group>"; };
 		F75FEC3E13FCC75F0032B0A9 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSimpleGuiButton.cpp; sourceTree = "<group>"; };
@@ -513,7 +513,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */,
 				F7153E9A140682ED00DF63BD /* Resources */,
 				F75FEC3E13FCC75F0032B0A9 /* README */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
@@ -557,7 +556,7 @@
 				F7153E89140681F500DF63BD /* kick_07.wav */,
 				F7153E8A140681F500DF63BD /* kick_08.wav */,
 				F7153E8B140681F500DF63BD /* kick_09.wav */,
-				F7153E8C140681F500DF63BD /* kick_10.wav */,
+				F7153E8C140681F500DF63BD /* kick_010.wav */,
 			);
 			name = "Drum Sounds";
 			path = "src/Drum Sounds";
@@ -566,6 +565,7 @@
 		F7153E9A140682ED00DF63BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */,
 				F7153E82140681F500DF63BD /* Drum Sounds */,
 			);
 			name = Resources;

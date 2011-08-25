@@ -33,10 +33,18 @@ void FingerTracker::setup() {
     gui.addSlider("Tilt Angle", angle, -30, 30);
     gui.addTitle("Depth Threshold");
     gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
-    gui.addSlider("Far Distance", zMax, 1.0f, 0.0f);
+    gui.addSlider("Far Distance", zMax, 1.5f, 0.5f);
     gui.setDefaultKeys(true);
-    gui.loadFromXML();
+    //gui.loadFromXML();
     gui.show();
+    
+    //Setup sounds
+    for(int i=0;i<10;i++) {
+        stringstream filename;
+        filename << "kick_0"<<i+1<<".wav";
+        drumSounds[i].loadSound(filename.str());
+        drumSounds[i].setVolume(100);
+    }
 }
 
 //--------------------------------------------------------------

@@ -3,6 +3,7 @@
 #define DEBUG true
 
 #include "ofMain.h"
+#include "ofSoundPlayer.h"
 #include "ofxOpenCv.h"
 #include "ofxKinect.h"
 #include "ofxSimpleGuiToo.h"
@@ -46,4 +47,6 @@ private:
     float                           zMax;
     int                             key;
     unsigned short                  *depthFrameRawData;
+    
+    ofSoundPlayer                   drumSounds[10];
 };

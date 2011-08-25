@@ -1,4 +1,5 @@
 #include "FingerTracker.h"
+#include "Constants.h"
 
 
 //--------------------------------------------------------------
@@ -25,6 +26,8 @@ void FingerTracker::setup() {
     rMin = 25;
     zMin = 0.0f;
     zMax = 0.75f;
+    showMenu = false;
+    showColorImage = true;
     
     //Setup GUI
     gui.setup();
@@ -37,14 +40,6 @@ void FingerTracker::setup() {
     gui.setDefaultKeys(true);
     //gui.loadFromXML();
     gui.show();
-    
-    //Setup sounds
-    for(int i=0;i<10;i++) {
-        stringstream filename;
-        filename << "kick_0"<<i+1<<".wav";
-        drumSounds[i].loadSound(filename.str());
-        drumSounds[i].setVolume(100);
-    }
 }
 
 //--------------------------------------------------------------
@@ -145,15 +140,17 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
 
 //--------------------------------------------------------------
 void FingerTracker::draw() {
-    gui.draw();
 	ofSetColor(255, 255, 255);
-    colorImage.draw(550, 100, 160, 120);
-    grayImage.draw(250, 250, kinect.width, kinect.height);
+    grayImage.draw(0, 0, WIDTH, HEIGHT);
     ofSetColor(255, 0, 0);
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-        ofCircle(it->x+250, it->y+250, 10);
+        ofCircle(it->x*WIDTH/kinect.width, it->y*HEIGHT/kinect.height, 10);
     }
 	ofSetColor(255, 255, 255);
+    if(showColorImage)
+        colorImage.draw(WIDTH-160, HEIGHT-120, 160, 120);
+    if(showMenu)
+        gui.draw();
 }
 
 //--------------------------------------------------------------
@@ -180,6 +177,16 @@ void FingerTracker::keyPressed (int key) {
 			if(angle<-30) angle=-30;
 			kinect.setCameraTiltAngle(angle);
 			break;
+        
+        case 's':
+        case 'S':
+            showMenu = !showMenu;
+            break;
+            
+        case 'c':
+        case 'C':
+            showColorImage = !showColorImage;
+            break;
 	}
 }
 

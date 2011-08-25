@@ -1,8 +1,9 @@
 #include "FingerTracker.h"
 #include "ofAppGlutWindow.h"
+#include "Constants.h"
 
 int main() {
 	ofAppGlutWindow window;
-	ofSetupOpenGL(&window, 1024, 768, OF_WINDOW);
+	ofSetupOpenGL(&window, WIDTH, HEIGHT, OF_WINDOW);
 	ofRunApp(new FingerTracker());
 }

@@ -1,7 +1,5 @@
 #pragma once
 
-#define DEBUG true
-
 #include "ofMain.h"
 #include "ofSoundPlayer.h"
 #include "ofxOpenCv.h"
@@ -48,5 +46,6 @@ private:
     int                             key;
     unsigned short                  *depthFrameRawData;
     
-    ofSoundPlayer                   drumSounds[10];
+    bool                            showMenu;
+    bool                            showColorImage;
 };

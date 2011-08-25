@@ -71,6 +71,7 @@
 		F75FEC8B13FCC7F80032B0A9 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC8513FCC7F80032B0A9 /* tinyxmlparser.cpp */; };
 		F75FEC8C13FCC7F80032B0A9 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC8713FCC7F80032B0A9 /* ofxXmlSettings.cpp */; };
 		F75FEC9E13FCD09C0032B0A9 /* ofxMSAInteractiveObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC9A13FCD09C0032B0A9 /* ofxMSAInteractiveObject.cpp */; };
+		F7CA1EBC1406ACFA00FB8FFF /* DrumKit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7CA1EBB1406ACFA00FB8FFF /* DrumKit.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +248,9 @@
 		F75FEC8813FCC7F80032B0A9 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		F75FEC9A13FCD09C0032B0A9 /* ofxMSAInteractiveObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAInteractiveObject.cpp; sourceTree = "<group>"; };
 		F75FEC9B13FCD09C0032B0A9 /* ofxMSAInteractiveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAInteractiveObject.h; sourceTree = "<group>"; };
+		F7CA1EBB1406ACFA00FB8FFF /* DrumKit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrumKit.cpp; sourceTree = "<group>"; };
+		F7CA1EBD1406AD0600FB8FFF /* DrumKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumKit.h; sourceTree = "<group>"; };
+		F7CA1EBE1406B09000FB8FFF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -531,6 +535,9 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* FingerTracker.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* FingerTracker.h */,
+				F7CA1EBB1406ACFA00FB8FFF /* DrumKit.cpp */,
+				F7CA1EBD1406AD0600FB8FFF /* DrumKit.h */,
+				F7CA1EBE1406B09000FB8FFF /* Constants.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -802,6 +809,7 @@
 				F75FEC8B13FCC7F80032B0A9 /* tinyxmlparser.cpp in Sources */,
 				F75FEC8C13FCC7F80032B0A9 /* ofxXmlSettings.cpp in Sources */,
 				F75FEC9E13FCD09C0032B0A9 /* ofxMSAInteractiveObject.cpp in Sources */,
+				F7CA1EBC1406ACFA00FB8FFF /* DrumKit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

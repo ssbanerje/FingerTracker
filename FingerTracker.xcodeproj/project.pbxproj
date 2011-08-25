@@ -40,6 +40,16 @@
 		E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
 		E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
 		E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		F7153E8E1406823F00DF63BD /* kick_01.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E83140681F500DF63BD /* kick_01.wav */; };
+		F7153E8F1406823F00DF63BD /* kick_02.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E84140681F500DF63BD /* kick_02.wav */; };
+		F7153E901406823F00DF63BD /* kick_03.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E85140681F500DF63BD /* kick_03.wav */; };
+		F7153E911406823F00DF63BD /* kick_04.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E86140681F500DF63BD /* kick_04.wav */; };
+		F7153E921406823F00DF63BD /* kick_05.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E87140681F500DF63BD /* kick_05.wav */; };
+		F7153E931406823F00DF63BD /* kick_06.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E88140681F500DF63BD /* kick_06.wav */; };
+		F7153E941406823F00DF63BD /* kick_07.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E89140681F500DF63BD /* kick_07.wav */; };
+		F7153E951406823F00DF63BD /* kick_08.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8A140681F500DF63BD /* kick_08.wav */; };
+		F7153E961406823F00DF63BD /* kick_09.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8B140681F500DF63BD /* kick_09.wav */; };
+		F7153E971406823F00DF63BD /* kick_10.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8C140681F500DF63BD /* kick_10.wav */; };
 		F75FEC7013FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */; };
 		F75FEC7113FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4E13FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp */; };
 		F75FEC7213FCC7CA0032B0A9 /* ofxSimpleGuiComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC5013FCC7CA0032B0A9 /* ofxSimpleGuiComboBox.cpp */; };
@@ -87,6 +97,25 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7153E8D1406823100DF63BD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				F7153E8E1406823F00DF63BD /* kick_01.wav in CopyFiles */,
+				F7153E8F1406823F00DF63BD /* kick_02.wav in CopyFiles */,
+				F7153E901406823F00DF63BD /* kick_03.wav in CopyFiles */,
+				F7153E911406823F00DF63BD /* kick_04.wav in CopyFiles */,
+				F7153E921406823F00DF63BD /* kick_05.wav in CopyFiles */,
+				F7153E931406823F00DF63BD /* kick_06.wav in CopyFiles */,
+				F7153E941406823F00DF63BD /* kick_07.wav in CopyFiles */,
+				F7153E951406823F00DF63BD /* kick_08.wav in CopyFiles */,
+				F7153E961406823F00DF63BD /* kick_09.wav in CopyFiles */,
+				F7153E971406823F00DF63BD /* kick_10.wav in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +191,17 @@
 		E4C2424610CC5A17004149E2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		F7153E83140681F500DF63BD /* kick_01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_01.wav; sourceTree = "<group>"; };
+		F7153E84140681F500DF63BD /* kick_02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_02.wav; sourceTree = "<group>"; };
+		F7153E85140681F500DF63BD /* kick_03.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_03.wav; sourceTree = "<group>"; };
+		F7153E86140681F500DF63BD /* kick_04.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_04.wav; sourceTree = "<group>"; };
+		F7153E87140681F500DF63BD /* kick_05.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_05.wav; sourceTree = "<group>"; };
+		F7153E88140681F500DF63BD /* kick_06.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_06.wav; sourceTree = "<group>"; };
+		F7153E89140681F500DF63BD /* kick_07.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_07.wav; sourceTree = "<group>"; };
+		F7153E8A140681F500DF63BD /* kick_08.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_08.wav; sourceTree = "<group>"; };
+		F7153E8B140681F500DF63BD /* kick_09.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_09.wav; sourceTree = "<group>"; };
+		F7153E8C140681F500DF63BD /* kick_10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_10.wav; sourceTree = "<group>"; };
+		F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = OpenFrameworks.icns; sourceTree = "<group>"; };
 		F75FEC3E13FCC75F0032B0A9 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSimpleGuiButton.cpp; sourceTree = "<group>"; };
 		F75FEC4D13FCC7CA0032B0A9 /* ofxSimpleGuiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSimpleGuiButton.h; sourceTree = "<group>"; };
@@ -471,6 +511,8 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */,
+				F7153E9A140682ED00DF63BD /* Resources */,
 				F75FEC3E13FCC75F0032B0A9 /* README */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
@@ -499,6 +541,32 @@
 				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
 			);
 			name = openFrameworks;
+			sourceTree = "<group>";
+		};
+		F7153E82140681F500DF63BD /* Drum Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F7153E83140681F500DF63BD /* kick_01.wav */,
+				F7153E84140681F500DF63BD /* kick_02.wav */,
+				F7153E85140681F500DF63BD /* kick_03.wav */,
+				F7153E86140681F500DF63BD /* kick_04.wav */,
+				F7153E87140681F500DF63BD /* kick_05.wav */,
+				F7153E88140681F500DF63BD /* kick_06.wav */,
+				F7153E89140681F500DF63BD /* kick_07.wav */,
+				F7153E8A140681F500DF63BD /* kick_08.wav */,
+				F7153E8B140681F500DF63BD /* kick_09.wav */,
+				F7153E8C140681F500DF63BD /* kick_10.wav */,
+			);
+			name = "Drum Sounds";
+			path = "src/Drum Sounds";
+			sourceTree = "<group>";
+		};
+		F7153E9A140682ED00DF63BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F7153E82140681F500DF63BD /* Drum Sounds */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		F75FEC3F13FCC7CA0032B0A9 /* ofxSimpleGuiToo */ = {
@@ -618,6 +686,7 @@
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
 				E4C2427710CC5ABF004149E2 /* CopyFiles */,
+				F7153E8D1406823100DF63BD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -760,6 +829,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
@@ -794,6 +864,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_UNROLL_LOOPS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;

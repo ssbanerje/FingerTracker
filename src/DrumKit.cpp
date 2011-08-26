@@ -11,7 +11,8 @@ DrumKit::DrumKit() {
         stringstream filename;
         filename << "kick_0"<<i+1<<".wav";
         drumSounds[i].loadSound(filename.str());
-        drumSounds[i].setVolume(100);
+        drumSounds[i].setVolume(1.0f);
+        drumSounds[i].setMultiPlay(true);
     }
 }
 
@@ -22,9 +23,9 @@ void DrumKit::draw() {
 
 //--------------------------------------------------------------
 void DrumKit::play(vector<cv::Point2i> fingerTips) {
-    if(ofGetFrameNum()%10==0) {
+    if(ofGetFrameNum()%FRAMEPLAY==0) {
         for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-            drumSounds[it->x/WIDTH].play();
+            drumSounds[it->x/(WIDTH/10)].play();
         }
     }
 }

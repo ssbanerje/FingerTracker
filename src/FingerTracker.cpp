@@ -28,7 +28,11 @@ void FingerTracker::setup() {
     rMin = 25;
     zMin = 0.0f;
     zMax = 0.75f;
+#ifndef DEBUG
     showMenu = false;
+#else
+    showMenu = true;
+#endif
     showColorImage = true;
     framePlay = drumKit.getFramePlay();
     drumCount = drumKit.getDrumCount();
@@ -156,7 +160,7 @@ void FingerTracker::draw() {
     ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
     grayImage.draw(0, 0, WIDTH, HEIGHT);
-    ofSetColor(255, 0, 255, 100);
+    ofSetColor(255, 0, 0, 100);
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
         ofCircle(it->x*WIDTH/kinect.width, it->y*HEIGHT/kinect.height, 10);
     }

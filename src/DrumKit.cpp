@@ -18,14 +18,16 @@ DrumKit::DrumKit() {
 
 //--------------------------------------------------------------
 void DrumKit::draw() {
-    return;
+    ofSetColor(255,0,0, 100);
+    #pragma omp parallel for
+    for(int i=0;i<DRUMS;i++)
+        ofLine(i*WIDTH/DRUMS, 0, i*WIDTH/DRUMS, HEIGHT);
 }
 
 //--------------------------------------------------------------
 void DrumKit::play(vector<cv::Point2i> fingerTips) {
     if(ofGetFrameNum()%FRAMEPLAY==0) {
         for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-            drumSounds[it->x/(WIDTH/10)].play();
-        }
+            drumSounds[(it->x/(WIDTH/DRUMS))%10].play();        }
     }
 }

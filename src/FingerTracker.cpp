@@ -10,6 +10,7 @@ void FingerTracker::setup() {
 #ifdef __APPLE__
     ofSetDataPathRoot("../Resources/");
 #endif
+    ofEnableAlphaBlending();
     
 	//Setup Kinect
 	kinect.init();
@@ -153,11 +154,12 @@ void FingerTracker::draw() {
         ofCircle(it->x*WIDTH/kinect.width, it->y*HEIGHT/kinect.height, 10);
     }
 	ofSetColor(255, 255, 255);
+    drumKit.draw();
+    ofSetColor(255, 255, 255);
     if(showColorImage)
         colorImage.draw(WIDTH-160, HEIGHT-120, 160, 120);
     if(showMenu)
         gui.draw();
-    drumKit.draw();
 }
 
 //--------------------------------------------------------------

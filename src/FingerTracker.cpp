@@ -10,7 +10,6 @@ void FingerTracker::setup() {
 #ifdef __APPLE__
     ofSetDataPathRoot("../Resources/");
 #endif
-    ofEnableAlphaBlending();
     
 	//Setup Kinect
 	kinect.init();
@@ -31,6 +30,8 @@ void FingerTracker::setup() {
     zMax = 0.75f;
     showMenu = false;
     showColorImage = true;
+    framePlay = drumKit.getFramePlay();
+    drumCount = drumKit.getDrumCount();
     
     //Setup GUI
     gui.setup();
@@ -40,6 +41,9 @@ void FingerTracker::setup() {
     gui.addTitle("Depth Threshold");
     gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
     gui.addSlider("Far Distance", zMax, 1.5f, 0.5f);
+    gui.addTitle("Drum Controls");
+    gui.addSlider("Frequency", framePlay, 5, 30);
+    gui.addSlider("Drum Count", drumCount, 10, 30);
     gui.setDefaultKeys(true);
     //gui.loadFromXML();
     gui.show();
@@ -53,6 +57,8 @@ void FingerTracker::update() {
     
 	if(kinect.isFrameNew())	{
         ofSetWindowShape(WIDTH, HEIGHT);
+        drumKit.setFramePlay(framePlay);
+        drumKit.setDrumCount(drumCount);
         colorImage.setFromPixels(kinect.getPixels(), kinect.width, kinect.height);
         grayImage.setFromPixels(kinect.getDepthPixels(), kinect.width, kinect.height);
         depthFrameRawData = kinect.getRawDepthPixels();
@@ -147,9 +153,10 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
 
 //--------------------------------------------------------------
 void FingerTracker::draw() {
+    ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
     grayImage.draw(0, 0, WIDTH, HEIGHT);
-    ofSetColor(255, 0, 0);
+    ofSetColor(255, 0, 255, 100);
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
         ofCircle(it->x*WIDTH/kinect.width, it->y*HEIGHT/kinect.height, 10);
     }

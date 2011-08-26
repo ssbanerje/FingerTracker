@@ -14,7 +14,13 @@ public:
     
     void draw();
     void play(vector<cv::Point2i> fingerTips);
+    void setFramePlay(int val) {framePlay = val;}
+    int  getFramePlay() {return framePlay;}    
+    void setDrumCount(int val) {drumCount = val;}
+    int  getDrumCount() {return drumCount;}
     
 private:
-    ofSoundPlayer drumSounds[10];
+    ofSoundPlayer           drumSounds[10];
+    int                     framePlay;
+    int                     drumCount;
 };

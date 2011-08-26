@@ -51,4 +51,6 @@ private:
     bool                            showColorImage;
     
     DrumKit                         drumKit;
+    int                             framePlay;
+    int                             drumCount;
 };

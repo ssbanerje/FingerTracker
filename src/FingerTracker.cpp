@@ -57,6 +57,7 @@ void FingerTracker::update() {
         depthFrameRawData = kinect.getRawDepthPixels();
         unproject(depthFrameRawData, (float*)x->data, (float*)y->data, (float*)z->data);
         fingerTips = detectFingers(*z, zMin, zMax);
+        drumKit.play(fingerTips);
     }
 }
 

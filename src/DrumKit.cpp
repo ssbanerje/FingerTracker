@@ -19,3 +19,12 @@ DrumKit::DrumKit() {
 void DrumKit::draw() {
     return;
 }
+
+//--------------------------------------------------------------
+void DrumKit::play(vector<cv::Point2i> fingerTips) {
+    if(ofGetFrameNum()%10==0) {
+        for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
+            drumSounds[it->x/WIDTH].play();
+        }
+    }
+}

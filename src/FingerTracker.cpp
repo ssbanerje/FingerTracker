@@ -7,7 +7,9 @@ void FingerTracker::setup() {
     //Setup OF
     ofSetFrameRate(60);
     ofSetWindowTitle("FingerTracker");
+#ifdef __APPLE__
     ofSetDataPathRoot("../Resources/");
+#endif
     
 	//Setup Kinect
 	kinect.init();
@@ -49,6 +51,7 @@ void FingerTracker::update() {
 	kinect.update();
     
 	if(kinect.isFrameNew())	{
+        ofSetWindowShape(WIDTH, HEIGHT);
         colorImage.setFromPixels(kinect.getPixels(), kinect.width, kinect.height);
         grayImage.setFromPixels(kinect.getDepthPixels(), kinect.width, kinect.height);
         depthFrameRawData = kinect.getRawDepthPixels();

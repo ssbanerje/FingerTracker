@@ -13,7 +13,7 @@ public:
     ~DrumKit() {}
     
     void draw();
-    void play(vector<cv::Point2i> fingerTips);
+    void play(vector<cv::Point2i> fingerTips, int kWidth, int kHeight);
     void setFramePlay(int val) {framePlay = val;}
     int  getFramePlay() {return framePlay;}    
     void setDrumCount(int val) {drumCount = val;}

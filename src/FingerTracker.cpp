@@ -46,7 +46,7 @@ void FingerTracker::setup() {
     gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
     gui.addSlider("Far Distance", zMax, 1.5f, 0.5f);
     gui.addTitle("Drum Controls");
-    gui.addSlider("Frequency", framePlay, 5, 30);
+    gui.addSlider("Frequency", framePlay, 1, 30);
     gui.addSlider("Drum Count", drumCount, 10, 30);
     gui.setDefaultKeys(true);
     //gui.loadFromXML();
@@ -55,12 +55,11 @@ void FingerTracker::setup() {
 
 //--------------------------------------------------------------
 void FingerTracker::update() {
-	ofBackground(50, 50, 52);
+	ofBackground(60, 50, 50);
     kinect.setCameraTiltAngle(angle);
 	kinect.update();
     
 	if(kinect.isFrameNew())	{
-        ofSetWindowShape(WIDTH, HEIGHT);
         drumKit.setFramePlay(framePlay);
         drumKit.setDrumCount(drumCount);
         colorImage.setFromPixels(kinect.getPixels(), kinect.width, kinect.height);
@@ -68,7 +67,7 @@ void FingerTracker::update() {
         depthFrameRawData = kinect.getRawDepthPixels();
         unproject(depthFrameRawData, (float*)x->data, (float*)y->data, (float*)z->data);
         fingerTips = detectFingers(*z, zMin, zMax);
-        drumKit.play(fingerTips);
+        drumKit.play(fingerTips, kinect.width, kinect.height);
     }
 }
 
@@ -159,16 +158,19 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
 void FingerTracker::draw() {
     ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255);
-    grayImage.draw(0, 0, WIDTH, HEIGHT);
-    ofSetColor(255, 0, 0, 100);
+    grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-        ofCircle(it->x*WIDTH/kinect.width, it->y*HEIGHT/kinect.height, 10);
+        ofSetColor(255*(1-(float)it->x/kinect.width), 
+                   100*(1-((float)it->x*it->y)/(kinect.width*kinect.height)), 
+                   255*(1-(float)it->y/kinect.height),
+                   200);
+        ofCircle(it->x*ofGetWidth()/kinect.width, it->y*ofGetHeight()/kinect.height, 10);
     }
 	ofSetColor(255, 255, 255);
     drumKit.draw();
     ofSetColor(255, 255, 255);
     if(showColorImage)
-        colorImage.draw(WIDTH-160, HEIGHT-120, 160, 120);
+        colorImage.draw(ofGetWidth()-160, ofGetHeight()-120, 160, 120);
     if(showMenu)
         gui.draw();
 }

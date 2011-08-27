@@ -1,11 +1,11 @@
 #include "FingerTracker.h"
 #include "Constants.h"
 
-
 //--------------------------------------------------------------
 void FingerTracker::setup() {
     //Setup OF
     ofSetFrameRate(60);
+	ofEnableAlphaBlending();
     ofSetWindowTitle("FingerTracker");
 #ifdef __APPLE__
     ofSetDataPathRoot("../Resources/");
@@ -39,9 +39,19 @@ void FingerTracker::setup() {
     minFreq = drumKit.getMinFreq();
     maxFreq = drumKit.getMaxFreq();
     
+    // Setup Fluid
+    fluidSolver.setup(100, 100);
+    fluidSolver.enableRGB(true).setFadeSpeed(0.002).setDeltaT(0.5).setVisc(0.00015).setColorDiffusion(0);
+	fluidDrawer.setup( &fluidSolver );
+	particleSystem.setFluidSolver( &fluidSolver );
+	fluidCellsX			= 150;
+    windowResized(ofGetWidth(), ofGetHeight());
+	pMouse = getWindowCenter();
+	resizeFluid			= true;
+    
     //Setup GUI
     gui.setup();
-    gui.config->gridSize.x = 200;
+    gui.config->gridSize.x = 250;
     gui.addTitle("Kinect Settings");
     gui.addSlider("Tilt Angle", angle, -30, 30);
     gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
@@ -51,9 +61,48 @@ void FingerTracker::setup() {
     gui.addSlider("Drum Count", drumCount, 10, 30);
     gui.addSlider("Min Frequency", minFreq, 0.1f, 1.0f);
     gui.addSlider("Max Frequency", maxFreq, 1.0f, 20.0f);
+    gui.addPage();
+    gui.addTitle("Fluid Settings");
+    gui.addSlider("fluidCellsX", fluidCellsX, 20, 400);
+	gui.addButton("resizeFluid", resizeFluid);
+	gui.addSlider("fs.viscocity", fluidSolver.viscocity, 0.0, 0.01); 
+	gui.addSlider("fs.colorDiffusion", fluidSolver.colorDiffusion, 0.0, 0.0003); 
+	gui.addSlider("fs.fadeSpeed", fluidSolver.fadeSpeed, 0.0, 0.1); 
+	gui.addSlider("fs.solverIterations", fluidSolver.solverIterations, 1, 50); 
+	gui.addSlider("fs.deltaT", fluidSolver.deltaT, 0.1, 5);
+	gui.addComboBox("fd.drawMode", (int&)fluidDrawer.drawMode, kFluidDrawCount, (string*)FluidDrawerGl::drawOptionTitles);
+	gui.addToggle("fs.doRGB", fluidSolver.doRGB); 
+	gui.addToggle("fs.doVorticityConfinement", fluidSolver.doVorticityConfinement);
+	gui.addToggle("fs.wrapX", fluidSolver.wrap_x); 
+	gui.addToggle("fs.wrapY", fluidSolver.wrap_y);
     gui.setDefaultKeys(true);
     //gui.loadFromXML();
+    gui.setPage(1);
     gui.show();
+}
+
+//--------------------------------------------------------------
+void FingerTracker::fadeToColor(float r, float g, float b, float speed) {
+    glColor4f(r, g, b, speed);
+	ofRect(0, 0, ofGetWidth(), ofGetHeight());
+}
+
+//--------------------------------------------------------------
+void FingerTracker::addToFluid( Vec2f pos, Vec2f vel, bool addColor, bool addForce ) {
+    float speed = vel.x * vel.x  + vel.y * vel.y * getWindowAspectRatio() * getWindowAspectRatio();
+    if(speed > 0) {
+		pos.x = constrain(pos.x, 0.0f, 1.0f);
+		pos.y = constrain(pos.y, 0.0f, 1.0f);
+        const float colorMult = 100;
+        const float velocityMult = 30;
+        int index = fluidSolver.getIndexForPos(pos);
+		if(addColor) {
+			Color drawColor( CM_HSV, ( getElapsedFrames() % 360 ) / 360.0f, 1, 1 );
+			fluidSolver.addColorAtIndex(index, drawColor * colorMult);
+		}
+		if(addForce)
+			fluidSolver.addForceAtIndex(index, vel * velocityMult);
+    }
 }
 
 //--------------------------------------------------------------
@@ -61,6 +110,12 @@ void FingerTracker::update() {
 	ofBackground(60, 50, 50);
     kinect.setCameraTiltAngle(angle);
 	kinect.update();
+    
+    if(resizeFluid) {
+		fluidSolver.setSize(fluidCellsX, fluidCellsX / getWindowAspectRatio() );
+		fluidDrawer.setup(&fluidSolver);
+		resizeFluid = false;
+	}
     
 	if(kinect.isFrameNew())	{
         drumKit.setFramePlay(framePlay);
@@ -76,6 +131,8 @@ void FingerTracker::update() {
         fingerTips = detectFingers(*z, zMin, zMax);
         drumKit.play(fingerTips, kinect.width, kinect.height);
     }
+    
+	fluidSolver.update();
 }
 
 //--------------------------------------------------------------
@@ -162,16 +219,25 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
 
 //--------------------------------------------------------------
 void FingerTracker::draw() {
+    ofSetColor(255, 255, 255);
+    
+    // Draw Fluid
+	glColor3f(1, 1, 1);
+    fluidDrawer.draw(0, 0, getWindowWidth(), getWindowHeight());
+    
+    // Draw Pictures
     ofEnableAlphaBlending();
-	ofSetColor(100, 100, 100);
+	ofSetColor(100, 100, 100, 100);
     grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
+    #pragma omp parallel for
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-        ofSetColor(setColor(it->x, it->y));
-        ofCircle(it->x*ofGetWidth()/kinect.width, it->y*ofGetHeight()/kinect.height, 10);
+        ofSetColor(setColor(it->x, it->y, 50));
+        ofCircle(it->x*ofGetWidth()/kinect.width, it->y*ofGetHeight()/kinect.height, 5);
     }
 	ofSetColor(255, 255, 255);
     drumKit.draw();
-    ofSetColor(255, 255, 255);
+    
+    // Show control
     if(showColorImage)
         colorImage.draw(ofGetWidth()-160, ofGetHeight()-120, 160, 120);
     if(showMenu)
@@ -290,10 +356,22 @@ void FingerTracker::HSLtoRGB_Subfunction(uint& c, const double& temp1, const dou
 }
 
 //--------------------------------------------------------------
-void FingerTracker::mouseMoved(int x, int y) {}
+void FingerTracker::mouseMoved(int x, int y) {
+	Vec2f eventPos = Vec2f(x, y);
+	Vec2f mouseNorm = Vec2f( eventPos) / getWindowSize();
+	Vec2f mouseVel = Vec2f( eventPos - pMouse ) / getWindowSize();
+	addToFluid( mouseNorm, mouseVel, true, true );
+	pMouse = eventPos;
+}
 
 //--------------------------------------------------------------
-void FingerTracker::mouseDragged(int x, int y, int button) {}
+void FingerTracker::mouseDragged(int x, int y, int button)  {
+	Vec2f eventPos = Vec2f(x, y);
+	Vec2f mouseNorm = Vec2f( eventPos ) / getWindowSize();
+	Vec2f mouseVel = Vec2f( eventPos - pMouse ) / getWindowSize();
+	addToFluid( mouseNorm, mouseVel, false, true );
+	pMouse = eventPos;
+}
 
 //--------------------------------------------------------------
 void FingerTracker::mousePressed(int x, int y, int button) {}
@@ -302,5 +380,6 @@ void FingerTracker::mousePressed(int x, int y, int button) {}
 void FingerTracker::mouseReleased(int x, int y, int button) {}
 
 //--------------------------------------------------------------
-void FingerTracker::windowResized(int w, int h) {}
-
+void FingerTracker::windowResized(int w, int h) {    
+	particleSystem.setWindowSize( Vec2f( w, h ) );
+}

@@ -18,7 +18,7 @@ void ParticleSystem::updateAndDraw( bool drawingFluid ) {
 	glDisable( GL_TEXTURE_2D );
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_LINE_SMOOTH);       
-	
+    #pragma omp parallel for
 	for(int i=0; i<MAX_PARTICLES; i++) {
 		if(particles[i].alpha > 0) {
 			particles[i].update( *solver, windowSize, invWindowSize );
@@ -42,6 +42,7 @@ void ParticleSystem::updateAndDraw( bool drawingFluid ) {
 
 //--------------------------------------------------------------
 void ParticleSystem::addParticles( const Vec2f &pos, int count ){
+    #pragma omp parallel for
 	for(int i=0; i<count; i++)
 		addParticle( pos + Rand::randVec2f() * 15 );
 }

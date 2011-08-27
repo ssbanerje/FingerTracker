@@ -75,8 +75,6 @@ private:
     // Fluid
 	int					fluidCellsX;
 	bool				resizeFluid;
-	bool				drawFluid;
-	bool				drawParticles;
 	MSA::FluidSolver	fluidSolver;
 	MSA::FluidDrawerGl	fluidDrawer;	
 	ParticleSystem		particleSystem;

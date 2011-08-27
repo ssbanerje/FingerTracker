@@ -23,7 +23,7 @@ DrumKit::DrumKit() {
 
 //--------------------------------------------------------------
 void DrumKit::draw() {
-    ofSetColor(255,255,0, 50);
+    ofSetColor(255,255,0, 10);
     #pragma omp parallel for
     for(int i=0;i<drumCount;i++)
         ofLine(i*ofGetWidth()/drumCount, 0, i*ofGetWidth()/drumCount, ofGetHeight());

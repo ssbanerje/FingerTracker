@@ -44,7 +44,6 @@ void FingerTracker::setup() {
     gui.config->gridSize.x = 200;
     gui.addTitle("Kinect Settings");
     gui.addSlider("Tilt Angle", angle, -30, 30);
-    gui.addTitle("Depth Threshold");
     gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
     gui.addSlider("Far Distance", zMax, 1.5f, 0.5f);
     gui.addTitle("Drum Controls");

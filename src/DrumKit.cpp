@@ -17,6 +17,8 @@ DrumKit::DrumKit() {
     
     framePlay = FRAMEPLAY;
     drumCount = DRUMS;
+    minFreq = MINFREQ;
+    maxFreq = MAXFREQ;
 }
 
 //--------------------------------------------------------------
@@ -32,7 +34,7 @@ void DrumKit::play(vector<cv::Point2i> fingerTips, int kWidth, int kHeight) {
     if(ofGetFrameNum()%framePlay==0) {
         #pragma omp parallel for
         for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-            drumSounds[(it->x/(kWidth/drumCount))%10].setSpeed(9.5*(float)it->y/kHeight + 0.5);
+            drumSounds[(it->x/(kWidth/drumCount))%10].setSpeed((maxFreq-minFreq)*(float)it->y/kHeight + minFreq);
             drumSounds[(it->x/(kWidth/drumCount))%10].play();
         }
     }

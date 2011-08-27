@@ -36,6 +36,8 @@ void FingerTracker::setup() {
     showColorImage = true;
     framePlay = drumKit.getFramePlay();
     drumCount = drumKit.getDrumCount();
+    minFreq = drumKit.getMinFreq();
+    maxFreq = drumKit.getMaxFreq();
     
     //Setup GUI
     gui.setup();
@@ -46,8 +48,10 @@ void FingerTracker::setup() {
     gui.addSlider("Near Distance", zMin, 0.0f, 1.0f);
     gui.addSlider("Far Distance", zMax, 1.5f, 0.5f);
     gui.addTitle("Drum Controls");
-    gui.addSlider("Frequency", framePlay, 1, 30);
+    gui.addSlider("Frame Play", framePlay, 1, 30);
     gui.addSlider("Drum Count", drumCount, 10, 30);
+    gui.addSlider("Min Frequency", minFreq, 0.1f, 1.0f);
+    gui.addSlider("Max Frequency", maxFreq, 1.0f, 20.0f);
     gui.setDefaultKeys(true);
     //gui.loadFromXML();
     gui.show();
@@ -62,9 +66,13 @@ void FingerTracker::update() {
 	if(kinect.isFrameNew())	{
         drumKit.setFramePlay(framePlay);
         drumKit.setDrumCount(drumCount);
+        drumKit.setMinFreq(minFreq);
+        drumKit.setMaxFreq(maxFreq);
+        
         colorImage.setFromPixels(kinect.getPixels(), kinect.width, kinect.height);
         grayImage.setFromPixels(kinect.getDepthPixels(), kinect.width, kinect.height);
         depthFrameRawData = kinect.getRawDepthPixels();
+        
         unproject(depthFrameRawData, (float*)x->data, (float*)y->data, (float*)z->data);
         fingerTips = detectFingers(*z, zMin, zMax);
         drumKit.play(fingerTips, kinect.width, kinect.height);
@@ -79,7 +87,6 @@ void FingerTracker::unproject(unsigned short *depth, float *x, float *y, float *
 	const float v0 = 240.0f;
 	float zCurrent;
     
-	// TODO calibration
     #pragma omp parallel for
 	for (int i=0; i<640*480; i++) {
 		u = i % 640;
@@ -157,7 +164,7 @@ vector<cv::Point2i> FingerTracker::detectFingers(cv::Mat1f z, float zMin, float 
 //--------------------------------------------------------------
 void FingerTracker::draw() {
     ofEnableAlphaBlending();
-	ofSetColor(255, 255, 255);
+	ofSetColor(100, 100, 100);
     grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
         ofSetColor(setColor(it->x, it->y));
@@ -210,11 +217,9 @@ void FingerTracker::keyPressed (int key) {
 }
 
 //--------------------------------------------------------------
-ofColor FingerTracker::setColor(int u, int v, int alpha) {
-    unsigned char* px = kinect.getDepthPixels();
-    cout << 255-0.5*px[u*kinect.width + v] << endl;
+inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
     return ofColor(255*(1-(float)u/kinect.width), 
-                   0.5*px[u*kinect.width + v], 
+                   255*(float)(u+v)/(kinect.width+kinect.height), 
                    255*(1-(float)v/kinect.height),
                    alpha);
 }

@@ -29,31 +29,34 @@ public:
     vector<cv::Point2i> detectFingers(cv::Mat1f z, float zMin=0.0f, float zMax=0.75f);
 
 private:
+    // Application + Kinect
 	ofxKinect                       kinect;
     ofxCvGrayscaleImage             grayImage;
-    ofxCvColorImage                 colorImage;
-    
-    std::vector<cv::Point2i>        fingerTips;
-    
+    ofxCvColorImage                 colorImage;    
 	int                             angle;
     
+    // Finger detection 
+    std::vector<cv::Point2i>        fingerTips;
     cv::Mat                         *depthFrameRaw;
     cv::Mat                         *x;
     cv::Mat                         *y;
     cv::Mat                         *z;
-    
     float                           rMin;
     float                           zMin;
     float                           zMax;
     int                             key;
     unsigned short                  *depthFrameRawData;
     
+    // GUI 
     bool                            showMenu;
     bool                            showColorImage;
     
+    // Drum 
     DrumKit                         drumKit;
     int                             framePlay;
     int                             drumCount;
+    float                           minFreq;
+    float                           maxFreq;
     
     
     ofColor setColor(int u, int v, int alpha=200);

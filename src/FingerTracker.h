@@ -63,6 +63,7 @@ private:
     bool                            showMenu;
     bool                            showColorImage;
     ofColor setColor(int u, int v, int alpha=200);
+    void HSLtoRGB_Subfunction(uint& c, const double& temp1, const double& temp2, const double& temp3);
     
     // Drum 
     DrumKit                         drumKit;

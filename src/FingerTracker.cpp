@@ -217,10 +217,86 @@ void FingerTracker::keyPressed (int key) {
 
 //--------------------------------------------------------------
 inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
-    return ofColor(255*(1-(float)u/kinect.width), 
-                   255*(float)(u+v)/(kinect.width+kinect.height), 
-                   255*(1-(float)v/kinect.height),
-                   alpha);
+    float h = ((float)u/kinect.width);
+    float s = 1.0f;
+    float l = 0.5 + 0.25*(float)v/kinect.height;
+    unsigned int r, g, b;
+    
+	if(s == 0)
+	{
+		r = l;
+		g = l;
+		b = l;
+	}
+	else
+	{
+		double temp1 = 0;
+		if(l < .50)
+		{
+			temp1 = l*(1 + s);
+		}
+		else
+		{
+			temp1 = l + s - (l*s);
+		}
+        
+		double temp2 = 2*l - temp1;
+        
+		double temp3 = 0;
+		for(int i = 0 ; i < 3 ; i++)
+		{
+			switch(i)
+			{
+                case 0: // red
+				{
+					temp3 = h + .33333;
+					if(temp3 > 1)
+						temp3 -= 1;
+					HSLtoRGB_Subfunction(r,temp1,temp2,temp3);
+					break;
+				}
+                case 1: // green
+				{
+					temp3 = h;
+					HSLtoRGB_Subfunction(g,temp1,temp2,temp3);
+					break;
+				}
+                case 2: // blue
+				{
+					temp3 = h - .33333;
+					if(temp3 < 0)
+						temp3 += 1;
+					HSLtoRGB_Subfunction(b,temp1,temp2,temp3);
+					break;
+				}
+                default:
+				{
+                    
+				}
+			}
+		}
+	}
+	r = (uint)((((double)r)/100)*255);
+	g = (uint)((((double)g)/100)*255);
+	b = (uint)((((double)b)/100)*255);
+    
+    
+    
+        
+    return ofColor(r, g, b, alpha);
+}
+
+void FingerTracker::HSLtoRGB_Subfunction(uint& c, const double& temp1, const double& temp2, const double& temp3) {
+    if((temp3 * 6) < 1)
+        c = (uint)((temp2 + (temp1 - temp2)*6*temp3)*100);
+    else
+        if((temp3 * 2) < 1)
+            c = (uint)(temp1*100);
+        else
+            if((temp3 * 3) < 2)
+                c = (uint)((temp2 + (temp1 - temp2)*(.66666 - temp3)*6)*100);
+            else
+                c = (uint)(temp2*100);
 }
 
 //--------------------------------------------------------------

@@ -11,7 +11,7 @@ DrumKit::DrumKit() {
         stringstream filename;
         filename << "kick_0"<<i+1<<".wav";
         drumSounds[i].loadSound(filename.str());
-        drumSounds[i].setVolume(1.0f);
+        drumSounds[i].setVolume(0.0f);
         drumSounds[i].setMultiPlay(true);
     }
     

@@ -222,31 +222,24 @@ inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
     float l = 0.5 + 0.25*(float)v/kinect.height;
     unsigned int r, g, b;
     
-	if(s == 0)
-	{
+	if(s == 0) {
 		r = l;
 		g = l;
 		b = l;
-	}
-	else
-	{
+	} else {
 		double temp1 = 0;
-		if(l < .50)
-		{
+		if(l < .50) {
 			temp1 = l*(1 + s);
-		}
-		else
-		{
+		} else {
 			temp1 = l + s - (l*s);
 		}
         
 		double temp2 = 2*l - temp1;
         
 		double temp3 = 0;
-		for(int i = 0 ; i < 3 ; i++)
-		{
-			switch(i)
-			{
+        #pragma omp parallel for
+		for(int i = 0 ; i < 3 ; i++) {
+			switch(i) {
                 case 0: // red
 				{
 					temp3 = h + .33333;
@@ -279,13 +272,10 @@ inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
 	r = (uint)((((double)r)/100)*255);
 	g = (uint)((((double)g)/100)*255);
 	b = (uint)((((double)b)/100)*255);
-    
-    
-    
-        
     return ofColor(r, g, b, alpha);
 }
 
+//--------------------------------------------------------------
 void FingerTracker::HSLtoRGB_Subfunction(uint& c, const double& temp1, const double& temp2, const double& temp3) {
     if((temp3 * 6) < 1)
         c = (uint)((temp2 + (temp1 - temp2)*6*temp3)*100);

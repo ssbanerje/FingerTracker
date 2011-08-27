@@ -258,6 +258,9 @@
 		F76C9B851408BDCC00244111 /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		F76C9B861408BEEB00244111 /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		F76C9B881408C28C00244111 /* ParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticleSystem.cpp; sourceTree = "<group>"; };
+		F76C9B8B1408C72000244111 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
+		F76C9B8C1408C72000244111 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		F76C9B8E1408C72000244111 /* MSATimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSATimer.h; sourceTree = "<group>"; };
 		F7CA1EBB1406ACFA00FB8FFF /* DrumKit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DrumKit.cpp; sourceTree = "<group>"; };
 		F7CA1EBD1406AD0600FB8FFF /* DrumKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumKit.h; sourceTree = "<group>"; };
 		F7CA1EBE1406B09000FB8FFF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				F76C9B8A1408C72000244111 /* MSATimer */,
 				F7CA1FCD1408BD0100FB8FFF /* MSACore */,
 				F7CA1F4F1408BCDE00FB8FFF /* MSAFluid */,
 				F75FEC8D13FCD09C0032B0A9 /* ofxMSAInteractiveObject */,
@@ -717,6 +721,25 @@
 			children = (
 				F75FEC9A13FCD09C0032B0A9 /* ofxMSAInteractiveObject.cpp */,
 				F75FEC9B13FCD09C0032B0A9 /* ofxMSAInteractiveObject.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F76C9B8A1408C72000244111 /* MSATimer */ = {
+			isa = PBXGroup;
+			children = (
+				F76C9B8B1408C72000244111 /* install.xml */,
+				F76C9B8C1408C72000244111 /* LICENSE.txt */,
+				F76C9B8D1408C72000244111 /* src */,
+			);
+			name = MSATimer;
+			path = ../../../addons/MSATimer;
+			sourceTree = "<group>";
+		};
+		F76C9B8D1408C72000244111 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F76C9B8E1408C72000244111 /* MSATimer.h */,
 			);
 			path = src;
 			sourceTree = "<group>";

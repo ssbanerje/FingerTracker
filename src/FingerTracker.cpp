@@ -227,7 +227,7 @@ void FingerTracker::draw() {
     
     // Draw Pictures
     ofEnableAlphaBlending();
-	ofSetColor(100, 100, 100, 100);
+	ofSetColor(255, 255, 255, 50);
     grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     #pragma omp parallel for
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
@@ -238,8 +238,10 @@ void FingerTracker::draw() {
     drumKit.draw();
     
     // Show control
-    if(showColorImage)
+    if(showColorImage) {
+        ofSetColor(255, 255, 255);
         colorImage.draw(ofGetWidth()-160, ofGetHeight()-120, 160, 120);
+    }
     if(showMenu)
         gui.draw();
 }
@@ -311,13 +313,13 @@ inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
 					temp3 = h + .33333;
 					if(temp3 > 1)
 						temp3 -= 1;
-					HSLtoRGB_Subfunction(r,temp1,temp2,temp3);
+					HSLtoRGB(r,temp1,temp2,temp3);
 					break;
 				}
                 case 1: // green
 				{
 					temp3 = h;
-					HSLtoRGB_Subfunction(g,temp1,temp2,temp3);
+					HSLtoRGB(g,temp1,temp2,temp3);
 					break;
 				}
                 case 2: // blue
@@ -325,7 +327,7 @@ inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
 					temp3 = h - .33333;
 					if(temp3 < 0)
 						temp3 += 1;
-					HSLtoRGB_Subfunction(b,temp1,temp2,temp3);
+					HSLtoRGB(b,temp1,temp2,temp3);
 					break;
 				}
                 default:
@@ -342,7 +344,7 @@ inline ofColor FingerTracker::setColor(int u, int v, int alpha) {
 }
 
 //--------------------------------------------------------------
-void FingerTracker::HSLtoRGB_Subfunction(uint& c, const double& temp1, const double& temp2, const double& temp3) {
+void FingerTracker::HSLtoRGB(uint& c, const double& temp1, const double& temp2, const double& temp3) {
     if((temp3 * 6) < 1)
         c = (uint)((temp2 + (temp1 - temp2)*6*temp3)*100);
     else

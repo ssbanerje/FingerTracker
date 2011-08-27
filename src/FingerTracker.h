@@ -6,6 +6,7 @@
 #include "ofxKinect.h"
 #include "ofxSimpleGuiToo.h"
 #include "DrumKit.h"
+#include "ofColor.h"
 #include <vector>
 
 using namespace std;
@@ -53,4 +54,7 @@ private:
     DrumKit                         drumKit;
     int                             framePlay;
     int                             drumCount;
+    
+    
+    ofColor setColor(int u, int v, int alpha=200);
 };

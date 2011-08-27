@@ -160,10 +160,7 @@ void FingerTracker::draw() {
 	ofSetColor(255, 255, 255);
     grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-        ofSetColor(255*(1-(float)it->x/kinect.width), 
-                   100*(1-((float)it->x*it->y)/(kinect.width*kinect.height)), 
-                   255*(1-(float)it->y/kinect.height),
-                   200);
+        ofSetColor(setColor(it->x, it->y));
         ofCircle(it->x*ofGetWidth()/kinect.width, it->y*ofGetHeight()/kinect.height, 10);
     }
 	ofSetColor(255, 255, 255);
@@ -210,6 +207,16 @@ void FingerTracker::keyPressed (int key) {
             showColorImage = !showColorImage;
             break;
 	}
+}
+
+//--------------------------------------------------------------
+ofColor FingerTracker::setColor(int u, int v, int alpha) {
+    unsigned char* px = kinect.getDepthPixels();
+    cout << 255-0.5*px[u*kinect.width + v] << endl;
+    return ofColor(255*(1-(float)u/kinect.width), 
+                   0.5*px[u*kinect.width + v], 
+                   255*(1-(float)v/kinect.height),
+                   alpha);
 }
 
 //--------------------------------------------------------------

@@ -48,6 +48,7 @@ void FingerTracker::setup() {
     windowResized(ofGetWidth(), ofGetHeight());
 	pMouse = getWindowCenter();
 	resizeFluid			= true;
+    moveFluid           = false;
     
     //Setup GUI
     gui.setup();
@@ -104,7 +105,24 @@ void FingerTracker::update() {
         depthFrameRawData = kinect.getRawDepthPixels();
         
         unproject(depthFrameRawData, (float*)x->data, (float*)y->data, (float*)z->data);
+        std::vector<cv::Point2i> oldFingers = fingerTips;
         fingerTips = detectFingers(*z, zMin, zMax);
+        float vx, vy;
+        #pragma omp parallel for
+        for(int i=0;i<fingerTips.size();i++) {
+            vx = i<oldFingers.size() ? fingerTips[i].x - oldFingers[i].x : 0.0f;
+            vy = i<oldFingers.size() ? fingerTips[i].y - oldFingers[i].y : 0.0f;
+            if(vx==0 && vy==0) {
+                vx = ofRandom(-0.01, 0.01);
+                vy = ofRandom(-0.01, 0.01);
+            }
+            addToFluid( MSA::Vec2f(
+                                   fingerTips[i].x*(float)ofGetWidth()/kinect.width,
+                                   fingerTips[i].y*(float)ofGetHeight()/kinect.height
+                        )/getWindowSize(),
+                        MSA::Vec2f(vx, vy)/getWindowSize(),
+                        !moveFluid, true );
+        }
         drumKit.play(fingerTips, kinect.width, kinect.height);
     }
     
@@ -121,13 +139,13 @@ void FingerTracker::draw() {
     
     // Draw Pictures
     ofEnableAlphaBlending();
-	ofSetColor(255, 255, 255, 50);
+	ofSetColor(255, 255, 255, 20);
     grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
-    #pragma omp parallel for
+    /*#pragma omp parallel for
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
         ofSetColor(setColor(it->x, it->y, 50));
         ofCircle(it->x*ofGetWidth()/kinect.width, it->y*ofGetHeight()/kinect.height, 5);
-    }
+    }*/
 	ofSetColor(255, 255, 255);
     drumKit.draw();
     
@@ -173,6 +191,16 @@ void FingerTracker::keyPressed (int key) {
         case 'c':
         case 'C':
             showColorImage = !showColorImage;
+            break;
+            
+        case 'm':
+        case 'M':
+            moveFluid = !moveFluid;
+            break;
+        
+        case 'f':
+        case 'F':
+            ofToggleFullscreen();
             break;
 	}
 }

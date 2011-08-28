@@ -79,6 +79,7 @@ private:
 	MSA::FluidDrawerGl	fluidDrawer;	
 	ParticleSystem		particleSystem;
 	MSA::Vec2f			pMouse;
+    bool                moveFluid;
 
     
 };

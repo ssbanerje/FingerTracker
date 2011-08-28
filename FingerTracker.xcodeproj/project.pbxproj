@@ -51,6 +51,8 @@
 		F7153E961406823F00DF63BD /* kick_09.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8B140681F500DF63BD /* kick_09.wav */; };
 		F7153E971406823F00DF63BD /* kick_010.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E8C140681F500DF63BD /* kick_010.wav */; };
 		F7153E9C140684FA00DF63BD /* OpenFrameworks.icns in CopyFiles */ = {isa = PBXBuildFile; fileRef = F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */; };
+		F750F13A1409F4BF00F11D5C /* FingerTrackerKinect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F750F1391409F4BF00F11D5C /* FingerTrackerKinect.cpp */; };
+		F750F13C1409F5DB00F11D5C /* FingerTrackerFluid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F750F13B1409F5DB00F11D5C /* FingerTrackerFluid.cpp */; };
 		F75FEC7013FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */; };
 		F75FEC7113FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC4E13FCC7CA0032B0A9 /* ofxSimpleGuiColorPicker.cpp */; };
 		F75FEC7213FCC7CA0032B0A9 /* ofxSimpleGuiComboBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F75FEC5013FCC7CA0032B0A9 /* ofxSimpleGuiComboBox.cpp */; };
@@ -211,6 +213,8 @@
 		F7153E8B140681F500DF63BD /* kick_09.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_09.wav; sourceTree = "<group>"; };
 		F7153E8C140681F500DF63BD /* kick_010.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = kick_010.wav; sourceTree = "<group>"; };
 		F7153E9B140683DF00DF63BD /* OpenFrameworks.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = OpenFrameworks.icns; sourceTree = "<group>"; };
+		F750F1391409F4BF00F11D5C /* FingerTrackerKinect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FingerTrackerKinect.cpp; sourceTree = "<group>"; };
+		F750F13B1409F5DB00F11D5C /* FingerTrackerFluid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FingerTrackerFluid.cpp; sourceTree = "<group>"; };
 		F75FEC3E13FCC75F0032B0A9 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		F75FEC4C13FCC7CA0032B0A9 /* ofxSimpleGuiButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSimpleGuiButton.cpp; sourceTree = "<group>"; };
 		F75FEC4D13FCC7CA0032B0A9 /* ofxSimpleGuiButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSimpleGuiButton.h; sourceTree = "<group>"; };
@@ -571,6 +575,8 @@
 			children = (
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* FingerTracker.cpp */,
+				F750F1391409F4BF00F11D5C /* FingerTrackerKinect.cpp */,
+				F750F13B1409F5DB00F11D5C /* FingerTrackerFluid.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* FingerTracker.h */,
 				F7CA1EBB1406ACFA00FB8FFF /* DrumKit.cpp */,
 				F7CA1EBD1406AD0600FB8FFF /* DrumKit.h */,
@@ -937,6 +943,8 @@
 				F7CA1FDE1408BD0100FB8FFF /* MSACoreGL.cpp in Sources */,
 				F76C9B871408BEEB00244111 /* Particle.cpp in Sources */,
 				F76C9B891408C28C00244111 /* ParticleSystem.cpp in Sources */,
+				F750F13A1409F4BF00F11D5C /* FingerTrackerKinect.cpp in Sources */,
+				F750F13C1409F5DB00F11D5C /* FingerTrackerFluid.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

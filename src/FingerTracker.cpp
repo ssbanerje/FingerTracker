@@ -199,7 +199,7 @@ void FingerTracker::keyPressed (int key) {
             break;
         
         case 'f':
-        case 'F':
+        case 'F': 
             ofToggleFullscreen();
             break;
 	}

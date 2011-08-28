@@ -62,6 +62,7 @@ private:
     // GUI 
     bool                            showMenu;
     bool                            showColorImage;
+    bool                            showImage;
     ofColor setColor(int u, int v, int alpha=200);
     void HSLtoRGB(uint& c, const double& temp1, const double& temp2, const double& temp3);
     

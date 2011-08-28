@@ -15,10 +15,19 @@ DrumKit::DrumKit() {
         drumSounds[i].setMultiPlay(true);
     }
     
+    mute = false;
     framePlay = FRAMEPLAY;
     drumCount = DRUMS;
     minFreq = MINFREQ;
     maxFreq = MAXFREQ;
+}
+
+//--------------------------------------------------------------
+void DrumKit::toggleMute() {
+    mute  = !mute;
+    #pragma omp parallel for
+    for(int i=0;i<drumCount; i++)
+        drumSounds[i].setVolume(mute ? 0.0f : 1.0f);
 }
 
 //--------------------------------------------------------------
@@ -31,6 +40,8 @@ void DrumKit::draw() {
 
 //--------------------------------------------------------------
 void DrumKit::play(vector<cv::Point2i> fingerTips, int kWidth, int kHeight) {
+    if(mute)
+        return;
     if(ofGetFrameNum()%framePlay==0) {
         #pragma omp parallel for
         for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {

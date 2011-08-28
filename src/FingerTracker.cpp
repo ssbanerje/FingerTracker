@@ -30,8 +30,10 @@ void FingerTracker::setup() {
     zMax = 0.75f;
 #ifndef DEBUG
     showMenu = false;
+    showImage = true;
 #else
     showMenu = true;
+    showImage = false;
 #endif
     showColorImage = true;
     framePlay = drumKit.getFramePlay();
@@ -41,7 +43,7 @@ void FingerTracker::setup() {
     
     // Setup Fluid
     fluidSolver.setup(100, 100);
-    fluidSolver.enableRGB(true).setFadeSpeed(0.002).setDeltaT(0.5).setVisc(0.00015).setColorDiffusion(0);
+    fluidSolver.enableRGB(true).setFadeSpeed(FADESPEED).setDeltaT(DELTAT).setVisc(VISCOSITY).setColorDiffusion(COLORDIFF);
 	fluidDrawer.setup( &fluidSolver );
 	particleSystem.setFluidSolver( &fluidSolver );
 	fluidCellsX			= 150;
@@ -139,8 +141,10 @@ void FingerTracker::draw() {
     
     // Draw Pictures
     ofEnableAlphaBlending();
-	ofSetColor(255, 255, 255, 20);
-    grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
+	if(!showImage) {
+        ofSetColor(255, 255, 255, 20);
+        grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
+    }
     /*#pragma omp parallel for
     for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
         ofSetColor(setColor(it->x, it->y, 50));
@@ -183,6 +187,11 @@ void FingerTracker::keyPressed (int key) {
 			kinect.setCameraTiltAngle(angle);
 			break;
         
+        case 'i':
+        case 'I':
+            showImage = !showImage;
+            break;
+            
         case 's':
         case 'S':
             showMenu = !showMenu;
@@ -193,9 +202,14 @@ void FingerTracker::keyPressed (int key) {
             showColorImage = !showColorImage;
             break;
             
+        case 'e':
+        case 'E':
+            moveFluid = !moveFluid;
+            break;
+            
         case 'm':
         case 'M':
-            moveFluid = !moveFluid;
+            drumKit.toggleMute();
             break;
         
         case 'f':

@@ -13,6 +13,7 @@ public:
     ~DrumKit() {}
     
     void draw();
+    void toggleMute();
     void play(vector<cv::Point2i> fingerTips, int kWidth, int kHeight);
     
     void setFramePlay(int val) {framePlay = val;}
@@ -34,4 +35,5 @@ private:
     int                     drumCount;
     float                   minFreq;
     float                   maxFreq;
+    bool                    mute;
 };

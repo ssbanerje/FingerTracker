@@ -138,6 +138,7 @@ void FingerTracker::draw() {
     // Draw Fluid
 	glColor3f(1, 1, 1);
     fluidDrawer.draw(0, 0, getWindowWidth(), getWindowHeight());
+    //particleSystem.updateAndDraw( false );
     
     // Draw Pictures
     ofEnableAlphaBlending();
@@ -145,11 +146,7 @@ void FingerTracker::draw() {
         ofSetColor(255, 255, 255, 20);
         grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     }
-    /*#pragma omp parallel for
-    for(vector<cv::Point2i>::iterator it=fingerTips.begin(); it!=fingerTips.end(); it++) {
-        ofSetColor(setColor(it->x, it->y, 50));
-        ofCircle(it->x*ofGetWidth()/kinect.width, it->y*ofGetHeight()/kinect.height, 5);
-    }*/
+    
 	ofSetColor(255, 255, 255);
     drumKit.draw();
     
@@ -205,6 +202,11 @@ void FingerTracker::keyPressed (int key) {
         case 'e':
         case 'E':
             moveFluid = !moveFluid;
+            break;
+            
+        case 'r':
+        case 'R':
+            fluidSolver.reset();
             break;
             
         case 'm':

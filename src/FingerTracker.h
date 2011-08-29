@@ -32,7 +32,7 @@ public:
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
     
-    // FingerDetection
+    // Finger Detection
     void unproject(unsigned short *depth, float *x, float *y, float *z);
     vector<cv::Point2i> detectFingers(cv::Mat1f z, float zMin=0.0f, float zMax=0.75f);
     

@@ -138,7 +138,7 @@ void FingerTracker::draw() {
     // Draw Fluid
 	glColor3f(1, 1, 1);
     fluidDrawer.draw(0, 0, getWindowWidth(), getWindowHeight());
-    //particleSystem.updateAndDraw( false );
+    particleSystem.updateAndDraw( false );
     
     // Draw Pictures
     ofEnableAlphaBlending();

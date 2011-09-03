@@ -51,6 +51,7 @@ void FingerTracker::setup() {
 	pMouse = getWindowCenter();
 	resizeFluid			= true;
     moveFluid           = false;
+    drawParticles = true;
     
     //Setup GUI
     gui.setup();
@@ -64,6 +65,8 @@ void FingerTracker::setup() {
     gui.addSlider("Drum Count", drumCount, 10, 30);
     gui.addSlider("Min Frequency", minFreq, 0.1f, 1.0f);
     gui.addSlider("Max Frequency", maxFreq, 1.0f, 20.0f);
+    gui.addTitle("UI Settings");
+    gui.addToggle("Particles", drawParticles); 
     gui.addPage();
     gui.addTitle("Fluid Settings");
     gui.addSlider("fluidCellsX", fluidCellsX, 20, 400);
@@ -138,7 +141,9 @@ void FingerTracker::draw() {
     // Draw Fluid
 	glColor3f(1, 1, 1);
     fluidDrawer.draw(0, 0, getWindowWidth(), getWindowHeight());
-    particleSystem.updateAndDraw( false );
+    if(drawParticles) {
+        particleSystem.updateAndDraw( false );
+    }
     
     // Draw Pictures
     ofEnableAlphaBlending();

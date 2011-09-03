@@ -18,7 +18,9 @@ void FingerTracker::addToFluid( Vec2f pos, Vec2f vel, bool addColor, bool addFor
 		if(addColor) {
 			Color drawColor( CM_HSV, ( getElapsedFrames() % 360 ) / 360.0f, 1, 1 );
             fluidSolver.addColorAtIndex(index, drawColor * colorMult);
-            particleSystem.addParticlesWithVelc( pos*Vec2f(getWindowSize()), vel*Vec2f(getWindowSize()), 2 );
+            if(drawParticles) {
+                particleSystem.addParticlesWithVelc( pos*Vec2f(getWindowSize()), vel*Vec2f(getWindowSize()), 2 );
+            }
 		}
 		if(addForce)
 			fluidSolver.addForceAtIndex(index, vel * velocityMult);

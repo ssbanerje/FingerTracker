@@ -25,13 +25,14 @@ void ParticleSystem::updateAndDraw( bool drawingFluid ) {
 			particles[i].updateVertexArrays( drawingFluid, invWindowSize, i, posArray, colArray);
 		}
 	}    
-	glEnableClientState(GL_VERTEX_ARRAY);
+	
+    glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(2, GL_FLOAT, 0, posArray);
 	
 	glEnableClientState(GL_COLOR_ARRAY);
 	glColorPointer(3, GL_FLOAT, 0, colArray);
 	
-	glDrawArrays(GL_LINE_LOOP, 0, MAX_PARTICLES * 2);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, MAX_PARTICLES * 2);
 	
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_COLOR_ARRAY);

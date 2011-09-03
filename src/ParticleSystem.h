@@ -2,7 +2,7 @@
 
 #include "Particle.h"
 
-#define MAX_PARTICLES		5000
+#define MAX_PARTICLES		1000
 
 using namespace MSA;
 

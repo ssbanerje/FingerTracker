@@ -13,6 +13,7 @@ public:
     float mass;
     
     void init(float x, float y);
+    void initWithVelc(float x, float y, float vx, float vy);
     void update( const FluidSolver &solver, 
                  const Vec2f &windowSize,
                  const Vec2f &invWindowSize );

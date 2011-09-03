@@ -14,28 +14,25 @@ void ParticleSystem::setWindowSize( Vec2f winSize ) {
 
 //--------------------------------------------------------------
 void ParticleSystem::updateAndDraw( bool drawingFluid ) {
-	glEnable(GL_BLEND);
-	glDisable( GL_TEXTURE_2D );
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_LINE_SMOOTH);       
+    // Update positions
     #pragma omp parallel for
 	for(int i=0; i<MAX_PARTICLES; i++) {
 		if(particles[i].alpha > 0) {
 			particles[i].update( *solver, windowSize, invWindowSize );
 			particles[i].updateVertexArrays( drawingFluid, invWindowSize, i, posArray, colArray);
 		}
-	}    
-	
-    glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(2, GL_FLOAT, 0, posArray);
-	
-	glEnableClientState(GL_COLOR_ARRAY);
-	glColorPointer(3, GL_FLOAT, 0, colArray);
-	
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, MAX_PARTICLES * 2);
-	
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glDisableClientState(GL_COLOR_ARRAY);
+	}
+    
+    // Draw to screen    
+	glEnable(GL_BLEND);
+	glDisable( GL_TEXTURE_2D );
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_LINE_SMOOTH);
+    ofSetColor(255, 255, 255);
+    #pragma omp parallel for
+    for(register int i=0;i<MAX_PARTICLES*2;i+=2) {
+        ofCircle(posArray[i], posArray[i+1], 2);
+    }
 	
 	glDisable(GL_BLEND);
 }
@@ -52,6 +49,20 @@ void ParticleSystem::addParticles( const Vec2f &pos, int count ){
 //--------------------------------------------------------------
 void ParticleSystem::addParticle( const Vec2f &pos ) {
 	particles[curIndex].init( pos.x, pos.y );
+	curIndex++;
+	if(curIndex >= MAX_PARTICLES) curIndex = 0;
+}
+
+//--------------------------------------------------------------
+void ParticleSystem::addParticlesWithVelc( const Vec2f &pos, const Vec2f &vel, int count ){
+#pragma omp parallel for
+	for(int i=0; i<count; i++)
+		addParticleWithVelc( pos + Rand::randVec2f()*15, vel );
+}
+
+//--------------------------------------------------------------
+void ParticleSystem::addParticleWithVelc( const Vec2f &pos, const Vec2f &vel ) {
+	particles[curIndex].initWithVelc( pos.x, pos.y, vel.x, vel.y );
 	curIndex++;
 	if(curIndex >= MAX_PARTICLES) curIndex = 0;
 }

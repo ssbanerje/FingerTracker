@@ -13,6 +13,15 @@ void Particle::init(float x, float y) {
 }
 
 //--------------------------------------------------------------
+void Particle::initWithVelc(float x, float y, float vx, float vy) {
+	pos = Vec2f( x, y );
+	vel = Vec2f( vx, vy );
+	radius = 5;
+	alpha  = Rand::randFloat( 0.3f, 1 );
+	mass = Rand::randFloat( 0.1f, 1 );
+}
+
+//--------------------------------------------------------------
 void Particle::update( const FluidSolver &solver, const Vec2f &windowSize, const Vec2f &invWindowSize ) {
 	if( alpha == 0 )
 		return;

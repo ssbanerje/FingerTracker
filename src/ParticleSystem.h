@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Particle.h"
+#include "ofMain.h"
 
-#define MAX_PARTICLES		1000
+#define MAX_PARTICLES		10000
 
 using namespace MSA;
 
@@ -25,5 +26,7 @@ public:
     void updateAndDraw( bool drawingFluid );
 	void addParticles( const Vec2f &pos, int count );
 	void addParticle( const Vec2f &pos );
+	void addParticlesWithVelc( const Vec2f &pos, const Vec2f &vel, int count );
+	void addParticleWithVelc( const Vec2f &pos, const Vec2f &vel );
 	void setWindowSize( Vec2f winSize );
 };

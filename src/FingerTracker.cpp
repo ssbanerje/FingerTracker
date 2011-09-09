@@ -44,6 +44,9 @@ void FingerTracker::setup() {
     // Setup Fluid
     fluidSolver.setup(100, 100);
     fluidSolver.enableRGB(true).setFadeSpeed(FADESPEED).setDeltaT(DELTAT).setVisc(VISCOSITY).setColorDiffusion(COLORDIFF);
+    fluidSolver.solverIterations = 20;
+    fluidSolver.wrap_x = fluidSolver.wrap_y = true;
+    fluidSolver.doVorticityConfinement = true;
 	fluidDrawer.setup( &fluidSolver );
 	particleSystem.setFluidSolver( &fluidSolver );
 	fluidCellsX			= 150;
@@ -124,9 +127,7 @@ void FingerTracker::update() {
             addToFluid( MSA::Vec2f(
                                    fingerTips[i].x*(float)ofGetWidth()/kinect.width,
                                    fingerTips[i].y*(float)ofGetHeight()/kinect.height
-                        )/getWindowSize(),
-                        MSA::Vec2f(vx, vy)/getWindowSize(),
-                        !moveFluid, true );
+                        )/getWindowSize(), MSA::Vec2f(vx, vy)/getWindowSize(), !moveFluid, true );
         }
         drumKit.play(fingerTips, kinect.width, kinect.height);
     }

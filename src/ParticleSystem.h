@@ -11,7 +11,6 @@ class ParticleSystem {
 public:	
 	
     float posArray[MAX_PARTICLES * 2 * 2];
-    float colArray[MAX_PARTICLES * 3 * 2];
 	Vec2f				windowSize;
 	Vec2f				invWindowSize;
 	const FluidSolver	*solver;
@@ -23,7 +22,7 @@ public:
 	ParticleSystem();
 	void setFluidSolver( const FluidSolver *aSolver ) { solver = aSolver; }
 	
-    void updateAndDraw( bool drawingFluid );
+    void updateAndDraw();
 	void addParticles( const Vec2f &pos, int count );
 	void addParticle( const Vec2f &pos );
 	void addParticlesWithVelc( const Vec2f &pos, const Vec2f &vel, int count );

@@ -13,13 +13,13 @@ void ParticleSystem::setWindowSize( Vec2f winSize ) {
 }
 
 //--------------------------------------------------------------
-void ParticleSystem::updateAndDraw( bool drawingFluid ) {
+void ParticleSystem::updateAndDraw() {
     // Update positions
     #pragma omp parallel for
 	for(int i=0; i<MAX_PARTICLES; i++) {
 		if(particles[i].alpha > 0) {
 			particles[i].update( *solver, windowSize, invWindowSize );
-			particles[i].updateVertexArrays( drawingFluid, invWindowSize, i, posArray, colArray);
+			particles[i].updateVertexArrays( invWindowSize, i, posArray);
 		}
 	}
     
@@ -55,7 +55,7 @@ void ParticleSystem::addParticle( const Vec2f &pos ) {
 
 //--------------------------------------------------------------
 void ParticleSystem::addParticlesWithVelc( const Vec2f &pos, const Vec2f &vel, int count ){
-#pragma omp parallel for
+    #pragma omp parallel for
 	for(int i=0; i<count; i++)
 		addParticleWithVelc( pos + Rand::randVec2f()*15, vel );
 }

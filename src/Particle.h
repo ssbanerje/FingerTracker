@@ -17,8 +17,6 @@ public:
     void update( const FluidSolver &solver, 
                  const Vec2f &windowSize,
                  const Vec2f &invWindowSize );
-	void updateVertexArrays( bool drawingFluid, 
-                             const Vec2f &invWindowSize, 
-                             int i, float* posBuffer, 
-                             float* colBuffer);
+	void updateVertexArrays( const Vec2f &invWindowSize, 
+                             int i, float* posBuffer);
 };

@@ -143,7 +143,7 @@ void FingerTracker::draw() {
 	glColor3f(1, 1, 1);
     fluidDrawer.draw(0, 0, getWindowWidth(), getWindowHeight());
     if(drawParticles) {
-        particleSystem.updateAndDraw( false );
+        particleSystem.updateAndDraw();
     }
     
     // Draw Pictures
@@ -152,15 +152,14 @@ void FingerTracker::draw() {
         ofSetColor(255, 255, 255, 20);
         grayImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     }
-    
-	ofSetColor(255, 255, 255);
-    drumKit.draw();
-    
-    // Show control
     if(showColorImage) {
         ofSetColor(255, 255, 255);
         colorImage.draw(ofGetWidth()-160, ofGetHeight()-120, 160, 120);
     }
+    
+    // Show control
+    ofSetColor(255, 255, 255);
+    drumKit.draw();
     if(showMenu)
         gui.draw();
 }
